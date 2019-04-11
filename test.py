@@ -14,5 +14,9 @@ bboxes = pkl.load(open("messi_ann.pkl", "rb"))
 transforms = Sequence([RandomHorizontalFlip(1), RandomScale(0.2, diff = True), RandomRotate(10)])
 
 img, bboxes = transforms(img, bboxes)
-
-plt.imshow(draw_rect(img, bboxes))
+for bbox in bboxes:
+   print(bbox)
+img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+cv2.imwrite("user_output/messi_out.jpg", draw_rect(img,bboxes))
+#plt.imshow(draw_rect(img, bboxes))
+#plt.show()
